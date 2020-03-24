@@ -1,0 +1,108 @@
+/*Descriptions*/
+.label {
+    font-weight: 600;
+    color: #303030;    
+    align-self: center;
+}
+
+/*day selected*/
+::ng-deep .ui-datepicker table td > a.ui-state-active {
+    color: #ffe708 !important;
+    background-color: #303030 !important;
+    border-radius: 100%;
+    font-weight: bold;
+}
+
+/*calendar header*/
+::ng-deep .ui-datepicker .ui-datepicker-header {
+    background-color: #303030 !important;
+    color: #ffe708 !important;
+    font-weight: bold;
+    font-size: 1.5em;
+    outline: 13px solid #303030;
+}
+
+/*day hover*/
+::ng-deep .ui-datepicker:not(.ui-state-disabled) table td a:not(.ui-state-active):not(.ui-state-highlight):hover {
+    border-radius: 100%;
+}
+
+
+
+
+::ng-deep .ui-datepicker .ui-datepicker-header .ui-datepicker-prev, ::ng-deep .ui-datepicker .ui-datepicker-header .ui-datepicker-next {
+    display: none;
+}
+
+/*container with a list of form-groups*/
+.list-container {
+    padding-right: 10px;
+    max-height: 355px;
+    overflow-y: scroll;
+    align-self: auto;
+}
+
+/*form-groups*/
+.input-line {
+    margin-bottom: 16px;
+    background-color: white;
+    padding: 10px;
+}
+
+.input-line input{
+    background-color: #303030;
+    border: 2px solid #303030;
+    border-radius: inherit;
+    color: white;
+    
+}
+
+/*Remove spin of date input*/
+.input-line input::-webkit-outer-spin-button,
+.input-line input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.input-line input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/*Remove spin of date input*/
+.input-line input::placeholder{
+    color: #303030;
+}
+
+/* width */
+.list-container::-webkit-scrollbar {
+    width: 2px;
+}
+  
+  /* Track */
+.list-container::-webkit-scrollbar-track {
+    background: #303030;
+}
+  
+  /* Handle */
+.list-container::-webkit-scrollbar-thumb {
+    background: #ffe708;
+}
+  
+/* Handle on hover */
+.list-container::-webkit-scrollbar-thumb:hover {
+    background: rgb(224, 203, 7);
+}
+
+/* Day span */
+.form-day {
+    color: #303030;
+    font-size: 1.6em;
+    font-weight: 700;
+}
+
+/* col - justify-center */
+.container > .row > div {
+    display: flex;
+    flex-direction: column;
+} 

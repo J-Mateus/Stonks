@@ -1,3 +1,33 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 
 
+button.glyphicon-button:focus,
+button.glyphicon-button:active:focus,
+button.glyphicon-button.active:focus,
+button.glyphicon-button.focus,
+button.glyphicon-button:active.focus,
+button.glyphicon-button.active.focus,
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+
+  -webkit-text-fill-color: none;
+  -webkit-box-shadow: white;
+  box-shadow: white;
+  transition: background-color 5000s ease-in-out 0s;
+}

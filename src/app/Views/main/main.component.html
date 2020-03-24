@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <p class="label">Selecione uma data:</p>
+            <p-calendar
+                selectionMode="multiple"
+                [(ngModel)]="value"            
+                [inline]="true"
+                [monthNavigator]="false"
+                [selectOtherMonths]="true"
+                class="align-self-center"
+                (click)="clickDate($event)"
+                (onSelect)="markDate($event)"
+                [locale]="br"></p-calendar>
+        </div>
+        <div class="col-12 col-md-6">
+            <p class="label">Selecione o horário de entrada e saída:</p>
+            <div class="list-container">
+                <form [formGroup]="form">
+                    <div formArrayName="days">
+                        <div *ngFor="let X of form['controls'].days['controls']; let iDay = index">
+                            <div id="{{ iDay }}-fb" formGroupName="{{ iDay }}" class="input-line">
+                                <div class="row">
+                                    <div class="col-2 col-md-2">
+                                        <span id="{{ iDay }}-day" class="form-day">--/--</span>
+                                      </div>
+                                    <div class="col-5 col-md-5">
+                                      <input formControlName="entry" class="form-control" placeholder="Entrada" type="time">
+                                    </div>
+                                    <div class="col-5 col-md-5">
+                                      <input formControlName="exit" class="form-control" placeholder="Saída" type="time">
+                                    </div>
+                                  </div> 
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
