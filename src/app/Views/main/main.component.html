@@ -6,11 +6,12 @@
                 selectionMode="multiple"
                 [(ngModel)]="value"            
                 [inline]="true"
-                [monthNavigator]="false"
-                [selectOtherMonths]="true"
+                [monthNavigator]="true"
+                [selectOtherMonths]="false"
                 class="align-self-center"
                 (click)="clickDate($event)"
                 (onSelect)="markDate($event)"
+                (onMonthChange)="dates($event)"
                 [locale]="br"></p-calendar>
         </div>
         <div class="col-12 col-md-6">
@@ -38,4 +39,26 @@
             </div>
         </div>
     </div>
+    <hr class="divider">
+    <form>
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <h1 class="total-hours">Horas trabalhadas:</h1>
+                <span>05:09</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label class="result-label label">Banco de Horas:</label>
+                <input class="form-control" placeholder="total" type="time">
+            </div>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-5">
+                <label class="result-label label">Hora Extra:</label>
+                <input class="form-control" placeholder="total" type="time">
+            </div>
+        </div>
+    </form>
 </div>

@@ -16,6 +16,6 @@ export class DateService {
   }
 
   configDate(date: Date, year?: boolean) {           
-    return year? this.spliceDate(date).join('/') : this.spliceDate(date).slice(0, 2).join('/');;
+    return year? this.spliceDate(date).join('/') : this.spliceDate(date).slice(0, 2).join('/');
   }
 }

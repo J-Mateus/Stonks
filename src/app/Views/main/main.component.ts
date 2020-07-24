@@ -10,17 +10,20 @@ import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 
 export class MainComponent implements OnInit {
 
-  teste
+  saveDates: string[];
   value: Date;
   br: any;
   form: FormGroup;
   currentId: string;
+  currentMonth: any;
   
   constructor(private fb: FormBuilder,
               private ds: DateService) { }
 
   ngOnInit() {
 
+    this.saveDates = [];
+    this.currentMonth =  new Date().getMonth() + 1;
     // document.querySelectorAll('.ui-datepicker-other-month').forEach(x => x.)
 
     this.br = {
@@ -75,29 +78,38 @@ export class MainComponent implements OnInit {
       document.getElementById(`${index}-fb`).setAttribute('data-form', this.ds.configDate(date));
     }, 0);
   }   
-  
+   
   //on click in date calendar
   clickDate(e) {
     let element: HTMLElement = e.target;
-  
-     if(e.target.localName === "a" && !e.target.classList.contains('ui-state-active')) {
-       this.removeDate(element.id);
-       
-     }else if(e.target.localName === "a" && e.target.classList.contains('ui-state-active')) {
-        element.setAttribute('id', this.currentId);
-        console.log(this.value); 
-     }
+    
+    if(element.localName === "a" && !element.classList.contains('ui-state-active') && element.id) {               
+      
+      this.removeDate(element.id);
+
+    }else if (element.localName === "a" && !element.classList.contains('ui-state-active') && !element.id){
+          
+      this.removeDate(`${element.textContent}/${this.currentMonth}`);
+    }
+
+     if(element.localName === "a" && element.classList.contains('ui-state-active')) element.setAttribute('id', this.currentId);
   }
 
-  //remove input of fomr
+  //remove input of form
   removeDate(id:string) {
-    const control = (<FormArray>this.form.controls['days']) as FormArray;
+   
+    const control = (<FormArray>this.form.controls['days']) as FormArray;   
+    console.log(parseInt(this.findFormGroup(id)));
     
     control.removeAt(parseInt(this.findFormGroup(id)));
+    
   }
 
-  findFormGroup(id:string) {
-    return <string>document.querySelector(`div[data-form='${id}']`).id.substring(0, 1);
+  findFormGroup(id:string) {      
+    return <string>document.querySelector(`div[data-form='${id}']`).id.match(/\d+/)[0];
   }
 
+  dates(e) {
+    this.currentMonth = e.month;
+  }
 }
