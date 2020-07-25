@@ -1,6 +1,8 @@
+@import './../../../assets/styles/default.scss';
+
 .footer {
     padding: 10px 0;
-    background-color: #303030;
+    background-color: $darkGrey;
     p {
         color: white;
         margin: 0;

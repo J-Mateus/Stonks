@@ -1,0 +1,25 @@
+@import './../../../assets/styles/default.scss';
+
+.result-label {
+    text-align: center;
+    width: 100%;
+}
+
+.total-hours {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.total-hours ~ span {
+    display: inherit;
+    text-align: center;
+    margin: 0 auto;
+    width: 19%;
+    font-weight: 700;
+    font-size: 40px;
+    background-color: $darkGrey;
+    color: $yellow;
+    padding-bottom: 7px;
+}

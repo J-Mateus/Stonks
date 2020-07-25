@@ -15,7 +15,7 @@
                 [locale]="br"></p-calendar>
         </div>
         <div class="col-12 col-md-6">
-            <p class="label">Selecione o horário de entrada e saída:</p>
+            <p class="label" *ngIf="form['controls'].days['controls'].length">Selecione o horário de entrada e saída:</p>
             <div class="list-container">
                 <form [formGroup]="form">
                     <div formArrayName="days">
@@ -27,9 +27,12 @@
                                       </div>
                                     <div class="col-5 col-md-5">
                                       <input formControlName="entry" class="form-control" placeholder="Entrada" type="time">
+                                      <small class="time-invalid" *ngIf="X['controls'].entry.errors && X['controls'].entry.errors.maxLimit">- Horário de entrada Inválido.</small>
                                     </div>
                                     <div class="col-5 col-md-5">
                                       <input formControlName="exit" class="form-control" placeholder="Saída" type="time">
+                                      <small class="time-invalid" *ngIf="X['controls'].exit.errors && X['controls'].exit.errors.minLimit">- Horário de saída Inválido.<br></small>
+                                      <small class="time-invalid" *ngIf="X['controls'].exit.errors && X['controls'].exit.errors.exitValidator" >- O horário de saída não pode ser menor ou igual que o horário de entrada.</small>
                                     </div>
                                   </div> 
                             </div>
@@ -39,26 +42,9 @@
             </div>
         </div>
     </div>
-    <hr class="divider">
-    <form>
-        <div class="row">
-            <div class="col-12 col-md-12">
-                <h1 class="total-hours">Horas trabalhadas:</h1>
-                <span>05:09</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-5">
-                <label class="result-label label">Banco de Horas:</label>
-                <input class="form-control" placeholder="total" type="time">
-            </div>
-            <div class="col-md-2">
+    
+    <hr *ngIf="form.status == 'VALID'"  class="divider">
+    
+    <app-resumo *ngIf="form.status == 'VALID'"></app-resumo>
 
-            </div>
-            <div class="col-md-5">
-                <label class="result-label label">Hora Extra:</label>
-                <input class="form-control" placeholder="total" type="time">
-            </div>
-        </div>
-    </form>
 </div>

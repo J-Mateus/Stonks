@@ -1,6 +1,8 @@
 import { DateService } from './../../services/date.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators, AbstractControl } from '@angular/forms';
+import { CalculatorService } from 'src/app/services/calculator.service';
+import { ValidatorsService } from 'src/app/services/validators.service';
 
 @Component({
   selector: 'app-main',
@@ -18,13 +20,14 @@ export class MainComponent implements OnInit {
   currentMonth: any;
   
   constructor(private fb: FormBuilder,
-              private ds: DateService) { }
+              private ds: DateService,
+              private calculator: CalculatorService,
+              private validators: ValidatorsService) { }
 
   ngOnInit() {
 
     this.saveDates = [];
     this.currentMonth =  new Date().getMonth() + 1;
-    // document.querySelectorAll('.ui-datepicker-other-month').forEach(x => x.)
 
     this.br = {
       firstDayOfWeek: 0,
@@ -40,11 +43,12 @@ export class MainComponent implements OnInit {
     };
   
     this.form = this.fb.group({
-      'days': this.fb.array([])
+      'days': this.fb.array([], [Validators.required])
     });
 
-  }
+    this.onChanges();
 
+  }
 
   //Trigger when day is active
   markDate(e) {
@@ -55,8 +59,8 @@ export class MainComponent implements OnInit {
   //init formGroup
   initDay() {  
     return this.fb.group({
-      'entry': [],
-      'exit': []
+      'entry': ['',  [Validators.required, this.validators.maxHour]],
+      'exit': ['',  [Validators.required, this.validators.minHour]]
     });
   }
 
@@ -82,7 +86,7 @@ export class MainComponent implements OnInit {
   //on click in date calendar
   clickDate(e) {
     let element: HTMLElement = e.target;
-    
+
     if(element.localName === "a" && !element.classList.contains('ui-state-active') && element.id) {               
       
       this.removeDate(element.id);
@@ -99,17 +103,40 @@ export class MainComponent implements OnInit {
   removeDate(id:string) {
    
     const control = (<FormArray>this.form.controls['days']) as FormArray;   
-    console.log(parseInt(this.findFormGroup(id)));
     
     control.removeAt(parseInt(this.findFormGroup(id)));
     
   }
 
-  findFormGroup(id:string) {      
+  findFormGroup(id:string) {           
     return <string>document.querySelector(`div[data-form='${id}']`).id.match(/\d+/)[0];
   }
 
-  dates(e) {
-    this.currentMonth = e.month;
+  dates(e) { this.currentMonth = e.month; }
+
+  onChanges() {
+    this.form.valueChanges.subscribe(val => {
+      this.getExitControl(this.form.controls['days'] as FormArray);
+    })
+  }
+
+  getExitControl(f: FormArray) {
+
+    for (let control of f.controls) {    
+      
+      control.get('exit').setValidators([
+            Validators.required,
+            this.validators.minHour,
+            this.validators.exitValidator(this.calculator.convertInputValues(control.get('entry').value))
+          ]);         
+
+      control.get('exit').updateValueAndValidity({onlySelf: false, emitEvent: false});      
+      console.log(this.form);
+      
+    }
+
   }
 }
+
+
+

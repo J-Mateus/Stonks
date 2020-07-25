@@ -1,5 +1,7 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 
+$yellow: #ffe708;
+$darkGrey: #303030;
 
 button.glyphicon-button:focus,
 button.glyphicon-button:active:focus,
@@ -31,3 +33,12 @@ select:-webkit-autofill:focus {
   box-shadow: white;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+/*Descriptions*/
+.label {
+    font-weight: 600;
+    color: $darkGrey;    
+    align-self: center;
+}
+
+.divider { border-top: solid 2px $darkGrey; }

@@ -1,13 +1,15 @@
+@import './../../../assets/styles/default.scss';
+
 .navbar-style {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: #303030;
+    background-color: $darkGrey;
     margin-bottom: 25px;
     span {
         text-transform: uppercase;
         font-weight: 700;
-        color: #ffe708;
+        color: $yellow;
         font-size: 2.5em;
     }
 }

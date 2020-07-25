@@ -1,35 +1,26 @@
-/*Descriptions*/
-.label {
-    font-weight: 600;
-    color: #303030;    
-    align-self: center;
-}
+@import './../../../assets/styles/default.scss';
 
 /*day selected*/
 ::ng-deep .ui-datepicker table td > a.ui-state-active {
-    color: #ffe708 !important;
-    background-color: #303030 !important;
+    color: $yellow !important;
+    background-color: $darkGrey !important;
     border-radius: 100%;
     font-weight: bold;
 }
 
 /*calendar header*/
 ::ng-deep .ui-datepicker .ui-datepicker-header {
-    background-color: #303030 !important;
-    color: #ffe708 !important;
+    background-color: $darkGrey !important;
+    color: $yellow !important;
     font-weight: bold;
     font-size: 1.5em;
-    outline: 13px solid #303030;
-}
-
-.divider {
-    border-top: solid 2px #303030;
+    outline: 13px solid $darkGrey;
 }
 
 ::ng-deep .ui-datepicker-month {
-    color: #ffe708 !important;
+    color: $yellow !important;
     font-weight: 700;
-    background-color: #303030;
+    background-color: $darkGrey;
     border: none;
 }
 
@@ -46,20 +37,18 @@
 .list-container {
     padding-right: 10px;
     max-height: 355px;
-    overflow-y: scroll;
+    overflow-y: auto;
     align-self: auto;
 }
 
 /*form-groups*/
 .input-line {
-    margin-bottom: 16px;
     background-color: white;
     padding: 10px;
 }
 
 .input-line input{
-    background-color: #303030;
-    border: 2px solid #303030;
+    background-color: $darkGrey;
     border-radius: inherit;
     color: white;
     
@@ -73,38 +62,26 @@
 }
 
 /* Firefox */
-.input-line input[type=number] {
-  -moz-appearance: textfield;
-}
+.input-line input[type=number] { -moz-appearance: textfield; }
 
 /*Remove spin of date input*/
-.input-line input::placeholder{
-    color: #303030;
-}
+.input-line input::placeholder{ color: $darkGrey; }
 
 /* width */
-.list-container::-webkit-scrollbar {
-    width: 2px;
-}
+.list-container::-webkit-scrollbar { width: 2px; }
   
   /* Track */
-.list-container::-webkit-scrollbar-track {
-    background: #303030;
-}
+.list-container::-webkit-scrollbar-track { background: $darkGrey; }
   
   /* Handle */
-.list-container::-webkit-scrollbar-thumb {
-    background: #ffe708;
-}
+.list-container::-webkit-scrollbar-thumb { background: $yellow; }
   
 /* Handle on hover */
-.list-container::-webkit-scrollbar-thumb:hover {
-    background: rgb(224, 203, 7);
-}
+.list-container::-webkit-scrollbar-thumb:hover { background: rgb(224, 203, 7); }
 
 /* Day span */
 .form-day {
-    color: #303030;
+    color: $darkGrey;
     font-size: 1.6em;
     font-weight: 700;
 }
@@ -115,25 +92,7 @@
     flex-direction: column;
 } 
 
-.total-hours {
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.total-hours ~ span {
-    display: inherit;
-    text-align: center;
-    margin: 0 auto;
-    width: 19%;
-    font-weight: 700;
-    font-size: 40px;
-    background-color: #303030;
-    color: #ffe708;
-}
-
-.result-label {
-    text-align: center;
-    width: 100%;
+.time-invalid {
+    color: red;
+    font-weight: 600;
 }

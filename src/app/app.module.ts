@@ -7,12 +7,14 @@ import { MainComponent } from './Views/main/main.component';
 import { CalendarModule } from 'primeng/calendar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ResumoComponent } from './Views/resumo/resumo.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
+    ResumoComponent,
   ],
   imports: [
     BrowserModule,
